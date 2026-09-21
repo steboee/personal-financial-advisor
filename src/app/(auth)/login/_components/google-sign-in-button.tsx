@@ -4,12 +4,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/client'
 
 function GoogleMark() {
   return (
-    <svg viewBox="0 0 24 24" className="size-4" aria-hidden>
+    <svg viewBox="0 0 24 24" className="size-3" aria-hidden>
       <path
         fill="#4285F4"
         d="M23.52 12.27c0-.79-.07-1.54-.2-2.27H12v4.51h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.87c2.26-2.09 3.58-5.17 3.58-8.87Z"
@@ -56,9 +55,20 @@ export function GoogleSignInButton({ next }: { next?: string }) {
   }
 
   return (
-    <Button onClick={signIn} disabled={pending} size="lg" className="w-full" variant="outline">
-      {pending ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <GoogleMark />}
-      {pending ? 'Redirecting…' : 'Continue with Google'}
-    </Button>
+    <button
+      type="button"
+      onClick={signIn}
+      disabled={pending}
+      className="press text-body inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-full bg-primary px-[22px] text-primary-foreground transition-colors hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:pointer-events-none disabled:opacity-50"
+    >
+      {pending ? (
+        <Loader2 className="size-[18px] animate-spin" aria-hidden />
+      ) : (
+        <span className="flex size-[18px] items-center justify-center rounded-full bg-white">
+          <GoogleMark />
+        </span>
+      )}
+      {pending ? 'Redirecting\u2026' : 'Continue with Google'}
+    </button>
   )
 }

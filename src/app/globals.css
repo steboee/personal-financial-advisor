@@ -7,8 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--stack-sans);
+  --font-display: var(--stack-display);
+  --font-mono: var(--stack-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -39,6 +40,38 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-tertiary: var(--surface-tertiary);
+  --color-surface-contrast: var(--surface-contrast);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-on-surface-faint: var(--on-surface-faint);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-border-strong: var(--border-strong);
+  --color-error-surface: var(--error-surface);
+  --color-on-error-surface: var(--on-error-surface);
+  --color-success: var(--success);
+  --color-success-surface: var(--success-surface);
+  --color-on-success-surface: var(--on-success-surface);
+  --color-warning: var(--warning);
+  --color-chart-6: var(--chart-6);
+  --color-needs: var(--needs);
+  --color-needs-surface: var(--needs-surface);
+  --color-on-needs-surface: var(--on-needs-surface);
+  --color-wants: var(--wants);
+  --color-wants-surface: var(--wants-surface);
+  --color-on-wants-surface: var(--on-wants-surface);
+  --color-savings: var(--savings);
+  --color-savings-surface: var(--savings-surface);
+  --color-on-savings-surface: var(--on-savings-surface);
+  --color-income: var(--income);
+  --color-income-surface: var(--income-surface);
+  --color-on-income-surface: var(--on-income-surface);
+  --color-surface-dark-2: var(--surface-dark-2);
+  --color-surface-dark-3: var(--surface-dark-3);
+  --color-destructive-foreground: var(--destructive-foreground);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -49,72 +82,202 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* SF Pro Display for headlines, SF Pro Text for body and UI; both resolve
+   * natively on Apple devices. Inter carries the same proportions elsewhere. */
+  /* Inter leads because it is actually loaded, so rendering is identical
+   * everywhere and never falls through to a serif. An undefined var() inside
+   * a font-family list invalidates the entire list, so the fallback name is
+   * supplied inline. */
+  --stack-display: var(--font-fallback-sans, Inter), "SF Pro Display", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --stack-sans: var(--font-fallback-sans, Inter), "SF Pro Text", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --stack-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+
+  /* ---------------------------------------------------------------------
+   * Apple palette. One accent (Action Blue) carries every interactive
+   * element; surfaces alternate white and parchment for rhythm. Values are
+   * exact oklch conversions of the documented hex colours.
+   * ------------------------------------------------------------------- */
+
+  --background: oklch(1 0 0); /* #ffffff */
+  --foreground: oklch(0.2316 0.0038 286.1); /* #1d1d1f ink */
+
+  --surface: oklch(1 0 0);
+  --surface-secondary: oklch(0.9707 0.0027 286.4); /* #f5f5f7 parchment */
+  --surface-tertiary: oklch(0.9707 0.0027 286.4);
+  --surface-contrast: oklch(0.2735 0.0036 286.2); /* #272729 */
+  --surface-dark-2: oklch(0.2858 0.0036 286.2); /* #2a2a2c */
+  --surface-dark-3: oklch(0.2653 0.0037 286.1); /* #252527 */
+  --on-surface: oklch(0.2316 0.0038 286.1);
+  --on-surface-variant: oklch(0.5795 0 0); /* #7a7a7a */
+  --on-surface-faint: oklch(0.8452 0 0); /* #cccccc */
+
+  /* -----------------------------------------------------------------
+   * Bucket hues. Each 50/30/20 bucket owns one colour, used the same way
+   * on every surface — dashboard, charts, transaction table. Always
+   * paired with the bucket's name, so meaning never rests on colour.
+   * --------------------------------------------------------------- */
+  --needs: oklch(0.548 0.163 256);
+  --needs-surface: oklch(0.955 0.027 256);
+  --on-needs-surface: oklch(0.42 0.14 256);
+
+  --wants: oklch(0.63 0.175 42);
+  --wants-surface: oklch(0.958 0.038 62);
+  --on-wants-surface: oklch(0.47 0.135 45);
+
+  --savings: oklch(0.565 0.13 158);
+  --savings-surface: oklch(0.955 0.035 158);
+  --on-savings-surface: oklch(0.42 0.105 158);
+
+  --income: oklch(0.6 0.145 185);
+  --income-surface: oklch(0.955 0.032 185);
+  --on-income-surface: oklch(0.43 0.11 185);
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.2316 0.0038 286.1);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --popover-foreground: oklch(0.2316 0.0038 286.1);
+
+  /* The single accent. */
+  --primary: oklch(0.522 0.1771 255.8); /* #0066cc */
+  --primary-foreground: oklch(1 0 0);
+  --focus-blue: oklch(0.5629 0.1933 256.2); /* #0071e3 */
+  --dark-surface-blue: oklch(0.669 0.1808 251.8); /* #2997ff — dark tiles only */
+
+  --secondary: oklch(0.9707 0.0027 286.4);
+  --secondary-foreground: oklch(0.2316 0.0038 286.1);
+  --muted: oklch(0.9707 0.0027 286.4);
+  --muted-foreground: oklch(0.5795 0 0);
+  --accent: oklch(0.9707 0.0027 286.4);
+  --accent-foreground: oklch(0.2316 0.0038 286.1);
+
+  /* State. Not part of the documented palette; always paired with an icon
+   * or sign so meaning never rests on colour alone. */
+  --destructive: oklch(0.5771 0.2143 27.3);
+  --destructive-foreground: oklch(1 0 0);
+  --error-surface: oklch(0.971 0.017 17);
+  --on-error-surface: oklch(0.44 0.169 26);
+  --success: oklch(0.5471 0.1436 151.3);
+  --success-surface: oklch(0.966 0.032 156);
+  --on-success-surface: oklch(0.42 0.115 152);
+  --warning: oklch(0.64 0.14 68);
+
+  --border: oklch(0.9007 0.0021 286.3);
+  --border-strong: oklch(0.8452 0 0);
+  --outline: oklch(0.8452 0 0);
+  --outline-variant: oklch(0.9007 0.0021 286.3);
+  --input: oklch(0.9007 0.0021 286.3);
+  --ring: oklch(0.5629 0.1933 256.2);
+
+  /* Charts: blue leads, the rest are distinguishable at small size. */
+  --chart-1: var(--needs);
+  --chart-2: var(--wants);
+  --chart-3: var(--savings);
+  --chart-4: var(--income);
+  --chart-5: oklch(0.575 0.175 305);
+  --chart-6: oklch(0.6 0.2 22);
+
+  /* Apple's radius grammar — never mixed. */
+  --radius-pill: 9999px;
+  --radius-card: 1.125rem; /* 18px */
+  --radius-button: 0.6875rem; /* 11px */
+  --radius-compact: 0.5rem; /* 8px */
+  --radius: 1.125rem;
+
+  /* The only shadow in the system: product renders resting on a surface. */
+  --shadow-render: 3px 5px 30px rgb(0 0 0 / 0.22);
+
+  --sidebar: oklch(0.9707 0.0027 286.4);
+  --sidebar-foreground: oklch(0.2316 0.0038 286.1);
+  --sidebar-primary: oklch(0.522 0.1771 255.8);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.9366 0.0026 286.4);
+  --sidebar-accent-foreground: oklch(0.2316 0.0038 286.1);
+  --sidebar-border: oklch(0.9007 0.0021 286.3);
+  --sidebar-ring: oklch(0.5629 0.1933 256.2);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Dark mode is not specified in the source; these keep the documented
+   * near-blacks and swap in the dark-surface blue for links. */
+  --background: oklch(0.2653 0.0037 286.1);
+  --foreground: oklch(1 0 0);
+
+  --surface: oklch(0.2653 0.0037 286.1);
+  --surface-secondary: oklch(0.2735 0.0036 286.2);
+  --surface-tertiary: oklch(0.2858 0.0036 286.2);
+  --surface-contrast: oklch(1 0 0);
+  --surface-dark-2: oklch(0.2858 0.0036 286.2);
+  --surface-dark-3: oklch(0.2653 0.0037 286.1);
+  --on-surface: oklch(1 0 0);
+  --on-surface-variant: oklch(0.8452 0 0);
+  --on-surface-faint: oklch(0.5795 0 0);
+
+  --card: oklch(0.2735 0.0036 286.2);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.2858 0.0036 286.2);
+  --popover-foreground: oklch(1 0 0);
+
+  --primary: oklch(0.669 0.1808 251.8);
+  --primary-foreground: oklch(1 0 0);
+  --focus-blue: oklch(0.669 0.1808 251.8);
+  --dark-surface-blue: oklch(0.669 0.1808 251.8);
+
+  --needs: oklch(0.7 0.155 256);
+  --needs-surface: oklch(0.32 0.075 256);
+  --on-needs-surface: oklch(0.88 0.07 256);
+
+  --wants: oklch(0.775 0.15 62);
+  --wants-surface: oklch(0.34 0.08 50);
+  --on-wants-surface: oklch(0.9 0.075 65);
+
+  --savings: oklch(0.73 0.145 158);
+  --savings-surface: oklch(0.32 0.07 158);
+  --on-savings-surface: oklch(0.88 0.08 158);
+
+  --income: oklch(0.755 0.125 185);
+  --income-surface: oklch(0.32 0.065 185);
+  --on-income-surface: oklch(0.89 0.07 185);
+
+  --secondary: oklch(0.3229 0.0036 286.2);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.3229 0.0036 286.2);
+  --muted-foreground: oklch(0.8452 0 0);
+  --accent: oklch(0.3229 0.0036 286.2);
+  --accent-foreground: oklch(1 0 0);
+
+  --destructive: oklch(0.65 0.19 25);
+  --destructive-foreground: oklch(1 0 0);
+  --error-surface: oklch(0.3 0.09 25);
+  --on-error-surface: oklch(0.9 0.06 18);
+  --success: oklch(0.72 0.16 155);
+  --success-surface: oklch(0.3 0.07 153);
+  --on-success-surface: oklch(0.88 0.07 156);
+  --warning: oklch(0.75 0.14 70);
+
+  --border: oklch(1 0 0 / 14%);
+  --border-strong: oklch(1 0 0 / 24%);
+  --outline: oklch(1 0 0 / 24%);
+  --outline-variant: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.669 0.1808 251.8);
+
+  --chart-1: var(--needs);
+  --chart-2: var(--wants);
+  --chart-3: var(--savings);
+  --chart-4: var(--income);
+  --chart-5: oklch(0.72 0.15 305);
+  --chart-6: oklch(0.7 0.18 22);
+
+  --sidebar: oklch(0.2735 0.0036 286.2);
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: oklch(0.669 0.1808 251.8);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.3229 0.0036 286.2);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(1 0 0 / 14%);
+  --sidebar-ring: oklch(0.669 0.1808 251.8);
 }
 
 @layer base {
@@ -126,5 +289,123 @@
   }
   html {
     @apply font-sans;
+  }
+}
+/* ---------------------------------------------------------------------------
+ * Type roles
+ *
+ * Apple's scale. Tracking tightens as size grows and returns to ~0 at body
+ * size — applying display tracking to body text is what makes type feel
+ * cramped. Weight ladder is 300/400/600/700; 500 is never used.
+ * Body is 17px at 1.47, not 16px: the extra pixel sets the reading pace.
+ * ------------------------------------------------------------------------- */
+
+@utility text-display {
+  font-family: var(--stack-display);
+  font-size: clamp(2.125rem, 1.3rem + 3.2vw, 3.5rem); /* 34 -> 56px */
+  line-height: 1.07;
+  letter-spacing: -0.005em;
+  font-weight: 600;
+}
+
+@utility text-display-lg {
+  font-family: var(--stack-display);
+  font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.5rem); /* 28 -> 40px */
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  font-weight: 600;
+}
+
+@utility text-title {
+  font-family: var(--stack-display);
+  font-size: 1.75rem;
+  line-height: 1.14;
+  letter-spacing: -0.004em;
+  font-weight: 600;
+}
+
+@utility text-heading-24 {
+  font-family: var(--stack-display);
+  font-size: 1.5rem;
+  line-height: 1.17;
+  letter-spacing: -0.003em;
+  font-weight: 600;
+}
+
+@utility text-heading-20 {
+  font-family: var(--stack-display);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.002em;
+  font-weight: 600;
+}
+
+@utility text-heading-16 {
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+@utility text-lede {
+  font-size: 1.3125rem; /* 21px */
+  line-height: 1.38;
+  letter-spacing: 0;
+  font-weight: 300;
+}
+
+/* The reading default: 17px / 400 / 1.47. */
+@utility text-body {
+  font-size: 1.0625rem;
+  line-height: 1.47;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-caption {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.43;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-label {
+  font-size: 0.75rem; /* 12px, nav and compact UI */
+  line-height: 1.33;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+/* Numerals in tables and figures. */
+@utility numeric {
+  font-family: var(--stack-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Universal press state. */
+@utility press {
+  transition: transform 150ms cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Motion
+ *
+ * Default to stillness: motion only explains a state change or confirms an
+ * action. Everything here is disabled under prefers-reduced-motion.
+ * ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

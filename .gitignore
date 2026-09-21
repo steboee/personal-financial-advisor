@@ -44,8 +44,9 @@ next-env.d.ts
 # real bank exports — personal financial data, never commit
 docs/*.json
 
-# agent skill symlinks into .agents/
-.claude/skills/
+# agent skill symlinks into .agents/ (real project skills are tracked)
+.claude/skills/supabase
+.claude/skills/supabase-postgres-best-practices
 .agents/
 !docs/fixtures/
 !docs/fixtures/*.json
