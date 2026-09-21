@@ -25,11 +25,14 @@ export function CategorySelectCell({
   categoryId,
   categories,
   labels,
+  names,
 }: {
   transactionId: string
   categoryId: string | null
   categories: CategoryOption[]
   labels: { uncategorized: string; needs: string; wants: string; savings: string }
+  /** Category id → translated name, resolved on the server. */
+  names: Record<string, string>
 }) {
   const [pending, startTransition] = useTransition()
   const [optimisticId, setOptimisticId] = useOptimistic(categoryId)
@@ -43,7 +46,7 @@ export function CategorySelectCell({
   // each value maps to a label, which would show the category UUID.
   const itemLabels = [
     { value: NONE, label: labels.uncategorized },
-    ...categories.map((c) => ({ value: c.id, label: c.name })),
+    ...categories.map((c) => ({ value: c.id, label: names[c.id] ?? c.name })),
   ]
 
   function change(value: string | null) {
@@ -72,7 +75,7 @@ export function CategorySelectCell({
             <SelectLabel>{labels[bucket]}</SelectLabel>
             {items.map((c) => (
               <SelectItem key={c.id} value={c.id}>
-                {c.name}
+                {names[c.id] ?? c.name}
               </SelectItem>
             ))}
           </SelectGroup>

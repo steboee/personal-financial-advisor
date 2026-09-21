@@ -39,6 +39,18 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-positive: var(--positive);
+  --color-positive-foreground: var(--positive-foreground);
+  --color-positive-muted: var(--positive-muted);
+  --color-negative: var(--negative);
+  --color-negative-foreground: var(--negative-foreground);
+  --color-negative-muted: var(--negative-muted);
+  --color-needs: var(--needs);
+  --color-needs-muted: var(--needs-muted);
+  --color-wants: var(--wants);
+  --color-wants-muted: var(--wants-muted);
+  --color-savings: var(--savings);
+  --color-savings-muted: var(--savings-muted);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -67,11 +79,28 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  /* Money direction. Green/red carry the meaning, but never alone: an
+   * explicit +/- sign always accompanies them for colour-blind readers. */
+  --positive: oklch(0.58 0.14 152);
+  --positive-foreground: oklch(0.44 0.13 152);
+  --positive-muted: oklch(0.95 0.04 152);
+  --negative: oklch(0.58 0.19 25);
+  --negative-foreground: oklch(0.48 0.19 25);
+  --negative-muted: oklch(0.96 0.03 25);
+
+  /* One hue per 50/30/20 bucket, reused everywhere a bucket appears. */
+  --needs: oklch(0.6 0.13 245);
+  --needs-muted: oklch(0.95 0.03 245);
+  --wants: oklch(0.65 0.15 305);
+  --wants-muted: oklch(0.96 0.03 305);
+  --savings: oklch(0.6 0.12 175);
+  --savings-muted: oklch(0.95 0.03 175);
+
+  --chart-1: oklch(0.6 0.13 245);
+  --chart-2: oklch(0.65 0.15 305);
+  --chart-3: oklch(0.6 0.12 175);
+  --chart-4: oklch(0.7 0.15 75);
+  --chart-5: oklch(0.6 0.14 25);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -102,11 +131,25 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --positive: oklch(0.72 0.15 152);
+  --positive-foreground: oklch(0.8 0.14 152);
+  --positive-muted: oklch(0.28 0.05 152);
+  --negative: oklch(0.7 0.17 25);
+  --negative-foreground: oklch(0.78 0.16 25);
+  --negative-muted: oklch(0.29 0.06 25);
+
+  --needs: oklch(0.7 0.13 245);
+  --needs-muted: oklch(0.28 0.05 245);
+  --wants: oklch(0.74 0.14 305);
+  --wants-muted: oklch(0.29 0.05 305);
+  --savings: oklch(0.72 0.12 175);
+  --savings-muted: oklch(0.28 0.04 175);
+
+  --chart-1: oklch(0.7 0.13 245);
+  --chart-2: oklch(0.74 0.14 305);
+  --chart-3: oklch(0.72 0.12 175);
+  --chart-4: oklch(0.78 0.14 75);
+  --chart-5: oklch(0.7 0.15 25);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);

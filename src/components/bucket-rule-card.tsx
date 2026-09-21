@@ -6,7 +6,9 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
+import { BUCKET_STYLES } from '@/lib/finance/colors'
 import { formatCurrency, formatPercent } from '@/lib/finance/format'
+import { cn } from 'cn'
 import type { BucketSummary } from '@/lib/finance/summary'
 import type { Dictionary } from '@/i18n/dictionaries'
 import { t } from '@/i18n/format'
@@ -34,10 +36,14 @@ export function BucketRuleCard({
       <CardContent className="flex flex-col gap-6">
         {buckets.map((b) => {
           const over = b.overBy > 0
+          const style = BUCKET_STYLES[b.bucket]
           return (
             <div key={b.bucket}>
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <span className="text-sm font-medium">{dict.buckets[b.bucket]}</span>
+                <span className="flex items-center gap-2 text-sm font-medium">
+                  <span className={cn('size-2 rounded-full', style.dot)} />
+                  {dict.buckets[b.bucket]}
+                </span>
                 <span className="text-sm tabular-nums text-muted-foreground">
                   {formatCurrency(b.spent)}
                   {hasIncome && (
@@ -52,9 +58,19 @@ export function BucketRuleCard({
               </div>
               <Progress
                 value={hasIncome ? Math.min((b.spent / (b.targetAmount || 1)) * 100, 100) : 0}
-                className="mt-2"
+                // The stock Progress hardcodes bg-primary on its indicator and
+                // does not forward a class to it, so it is targeted by slot.
+                className={cn(
+                  'mt-2 [&_[data-slot=progress-indicator]]:transition-colors',
+                  over ? '[&_[data-slot=progress-indicator]]:bg-negative' : style.bar
+                )}
               />
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p
+                className={cn(
+                  'mt-2 text-sm',
+                  over ? 'text-negative-foreground' : 'text-muted-foreground'
+                )}
+              >
                 {!hasIncome
                   ? r.importPrompt
                   : over

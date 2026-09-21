@@ -14,8 +14,10 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import type { BucketType } from '@/lib/finance/buckets'
-import { formatCurrency, formatDateShort } from '@/lib/finance/format'
+import { amountColor, BUCKET_STYLES } from '@/lib/finance/colors'
+import { formatDateShort, formatSigned } from '@/lib/finance/format'
 import { getAvailableMonths, getCategories, getTransactions } from '@/lib/finance/queries'
+import { categoryName } from '@/i18n/categories'
 import { getDictionary } from '@/i18n/dictionaries'
 import { t } from '@/i18n/format'
 
@@ -50,6 +52,12 @@ export default async function TransactionsPage({
     getAvailableMonths(),
     getDictionary(),
   ])
+
+  // Resolved once here rather than per row: the dictionary lives on the
+  // server, and the select cell is a client component.
+  const categoryNames = Object.fromEntries(
+    categories.map((c) => [c.id, categoryName(dict, c.name)])
+  )
 
   /** Builds a link that toggles the sort direction for a column. */
   function sortLink(column: 'date' | 'amount') {
@@ -130,17 +138,25 @@ export default async function TransactionsPage({
                           uncategorized: dict.transactions.uncategorized,
                           ...dict.buckets,
                         }}
+                        names={categoryNames}
                       />
                     </TableCell>
                     <TableCell>
                       {tx.category ? (
-                        <Badge variant="outline">{dict.buckets[tx.category.bucket]}</Badge>
+                        <Badge
+                          variant="outline"
+                          className={BUCKET_STYLES[tx.category.bucket].badge}
+                        >
+                          {dict.buckets[tx.category.bucket]}
+                        </Badge>
                       ) : (
                         <span className="text-xs text-muted-foreground">—</span>
                       )}
                     </TableCell>
-                    <TableCell className="text-right font-medium tabular-nums">
-                      {formatCurrency(tx.amount)}
+                    <TableCell
+                      className={`text-right font-medium tabular-nums ${amountColor(tx.amount)}`}
+                    >
+                      {formatSigned(tx.amount)}
                     </TableCell>
                   </TableRow>
                 ))

@@ -1,4 +1,11 @@
-import { TrendingDownIcon, TrendingUpIcon } from 'lucide-react'
+import {
+  AlertCircleIcon,
+  ArrowDownLeftIcon,
+  ArrowUpRightIcon,
+  TrendingDownIcon,
+  TrendingUpIcon,
+  WalletIcon,
+} from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import {
@@ -10,6 +17,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { formatCurrency, formatPercent } from '@/lib/finance/format'
+import { cn } from 'cn'
 import type { MonthSummary } from '@/lib/finance/summary'
 import type { Dictionary } from '@/i18n/dictionaries'
 
@@ -22,6 +30,9 @@ export function SectionCards({ summary, dict }: { summary: MonthSummary; dict: D
     {
       description: c.income,
       value: formatCurrency(summary.income),
+      icon: ArrowDownLeftIcon,
+      accent: 'text-positive-foreground',
+      tint: 'bg-positive-muted text-positive-foreground',
       badge: null,
       footer: c.incomeFooter,
       hint: c.incomeHint,
@@ -29,6 +40,9 @@ export function SectionCards({ summary, dict }: { summary: MonthSummary; dict: D
     {
       description: c.expenses,
       value: formatCurrency(summary.expenses),
+      icon: ArrowUpRightIcon,
+      accent: 'text-negative-foreground',
+      tint: 'bg-negative-muted text-negative-foreground',
       badge: hasIncome ? formatPercent((summary.expenses / summary.income) * 100) : null,
       badgeUp: false,
       footer: c.expensesFooter,
@@ -37,6 +51,13 @@ export function SectionCards({ summary, dict }: { summary: MonthSummary; dict: D
     {
       description: c.net,
       value: formatCurrency(summary.net),
+      icon: WalletIcon,
+      // The one figure that can go either way, so it takes its colour
+      // from the value rather than from the card.
+      accent: positiveNet ? 'text-positive-foreground' : 'text-negative-foreground',
+      tint: positiveNet
+        ? 'bg-positive-muted text-positive-foreground'
+        : 'bg-negative-muted text-negative-foreground',
       badge: hasIncome ? formatPercent(summary.savingsRatePct, 1) : null,
       badgeUp: positiveNet,
       footer: positiveNet ? c.netFooterPositive : c.netFooterNegative,
@@ -45,6 +66,13 @@ export function SectionCards({ summary, dict }: { summary: MonthSummary; dict: D
     {
       description: c.uncategorized,
       value: formatCurrency(summary.uncategorized),
+      icon: AlertCircleIcon,
+      // Only worth flagging when there is actually something to fix.
+      accent: summary.uncategorized > 0 ? 'text-wants' : undefined,
+      tint:
+        summary.uncategorized > 0
+          ? 'bg-wants-muted text-wants'
+          : 'bg-muted text-muted-foreground',
       badge: null,
       footer:
         summary.uncategorized > 0 ? c.uncategorizedFooterSome : c.uncategorizedFooterNone,
@@ -54,17 +82,32 @@ export function SectionCards({ summary, dict }: { summary: MonthSummary; dict: D
   ]
 
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4 dark:*:data-[slot=card]:bg-card">
+    <div className="grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
       {cards.map((card) => (
         <Card key={card.description} className="@container/card">
           <CardHeader>
-            <CardDescription>{card.description}</CardDescription>
-            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            <CardDescription className="flex items-center gap-2">
+              <span
+                className={cn(
+                  'flex size-6 items-center justify-center rounded-md [&_svg]:size-3.5',
+                  card.tint
+                )}
+              >
+                <card.icon />
+              </span>
+              {card.description}
+            </CardDescription>
+            <CardTitle
+              className={cn(
+                'text-2xl font-semibold tabular-nums @[250px]/card:text-3xl',
+                card.accent
+              )}
+            >
               {card.value}
             </CardTitle>
             {card.badge && (
               <CardAction>
-                <Badge variant="outline">
+                <Badge variant="outline" className={card.tint}>
                   {card.badgeUp ? <TrendingUpIcon /> : <TrendingDownIcon />}
                   {card.badge}
                 </Badge>

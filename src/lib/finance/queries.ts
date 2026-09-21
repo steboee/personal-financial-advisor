@@ -48,6 +48,9 @@ export async function getCategories(): Promise<CategoryOption[]> {
   return (data ?? []) as CategoryOption[]
 }
 
+/** Money direction: what came in, what went out, or everything. */
+export type DirectionFilter = 'in' | 'out'
+
 export interface TransactionFilters {
   month?: string
   from?: string
@@ -55,6 +58,13 @@ export interface TransactionFilters {
   categoryId?: string
   bucket?: BucketType
   search?: string
+  /** 'in' keeps credits, 'out' keeps debits. */
+  flow?: DirectionFilter
+  /** Bounds on the absolute amount, so they read the same for in and out. */
+  minAmount?: number
+  maxAmount?: number
+  /** Only rows with no category yet. */
+  uncategorized?: boolean
   sort?: 'date' | 'amount'
   direction?: 'asc' | 'desc'
   limit?: number
@@ -83,6 +93,24 @@ export async function getTransactions(
   if (filters.from) query = query.gte('booked_at', filters.from)
   if (filters.to) query = query.lte('booked_at', filters.to)
   if (filters.categoryId) query = query.eq('category_id', filters.categoryId)
+  if (filters.uncategorized) query = query.is('category_id', null)
+
+  // Amount filters run in SQL. Bounds are on the absolute value, so
+  // "at least 50" means the same thing for income and for spending.
+  if (filters.flow === 'in') query = query.gt('amount', 0)
+  if (filters.flow === 'out') query = query.lt('amount', 0)
+
+  if (filters.minAmount != null) {
+    if (filters.flow === 'in') query = query.gte('amount', filters.minAmount)
+    else if (filters.flow === 'out') query = query.lte('amount', -filters.minAmount)
+    else query = query.or(`amount.gte.${filters.minAmount},amount.lte.${-filters.minAmount}`)
+  }
+  if (filters.maxAmount != null) {
+    if (filters.flow === 'in') query = query.lte('amount', filters.maxAmount)
+    else if (filters.flow === 'out') query = query.gte('amount', -filters.maxAmount)
+    // |amount| <= max is just -max <= amount <= max, so two plain bounds.
+    else query = query.lte('amount', filters.maxAmount).gte('amount', -filters.maxAmount)
+  }
   if (filters.search) {
     const term = filters.search.replace(/[%,]/g, ' ').trim()
     if (term) query = query.or(`description.ilike.%${term}%,counterparty.ilike.%${term}%`)

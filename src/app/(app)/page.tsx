@@ -19,7 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { formatCurrency, formatDateShort, monthKey } from '@/lib/finance/format'
+import { amountColor } from '@/lib/finance/colors'
+import { formatDateShort, formatSigned, monthKey } from '@/lib/finance/format'
 import { getTransactions } from '@/lib/finance/queries'
 import { summarize } from '@/lib/finance/summary'
 import { getDictionary } from '@/i18n/dictionaries'
@@ -93,8 +94,10 @@ export default async function DashboardPage({
                       {formatDateShort(t.booked_at)}
                     </TableCell>
                     <TableCell className="max-w-[16rem] truncate">{t.description}</TableCell>
-                    <TableCell className="text-right tabular-nums">
-                      {formatCurrency(t.amount)}
+                    <TableCell
+                      className={`text-right font-medium tabular-nums ${amountColor(t.amount)}`}
+                    >
+                      {formatSigned(t.amount)}
                     </TableCell>
                   </TableRow>
                 ))}

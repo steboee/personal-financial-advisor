@@ -30,6 +30,28 @@
     "wants": "Priania",
     "savings": "Úspory"
   },
+  "categoryNames": {
+    "Groceries": "Potraviny",
+    "Housing": "Bývanie",
+    "Utilities": "Energie a služby",
+    "Telecom": "Telekomunikácie",
+    "Transport": "Doprava",
+    "Health": "Zdravie",
+    "Insurance": "Poistenie",
+    "Taxes & fees": "Dane a poplatky",
+    "Debt payments": "Splátky úverov",
+    "Dining out": "Stravovanie vonku",
+    "Shopping": "Nákupy",
+    "Entertainment": "Zábava",
+    "Sport": "Šport",
+    "Travel": "Cestovanie",
+    "Investments": "Investície",
+    "Savings": "Sporenie",
+    "Pension": "Dôchodok",
+    "Income": "Príjem",
+    "Transfers": "Prevody",
+    "Uncategorized": "Nezaradené"
+  },
   "dashboard": {
     "title": "Prehľad",
     "emptyTitle": "Zatiaľ tu nič nie je",
@@ -85,13 +107,26 @@
       "allMonths": "Všetky mesiace",
       "allBuckets": "Všetky skupiny",
       "allCategories": "Všetky kategórie",
-      "clear": "Zrušiť"
+      "clear": "Zrušiť",
+      "filtersLabel": "Filtre",
+      "allFlows": "Všetky pohyby",
+      "flowIn": "Príjmy",
+      "flowOut": "Výdavky",
+      "amount": "Suma",
+      "minAmount": "Min",
+      "maxAmount": "Max",
+      "uncategorizedOnly": "Len nezaradené",
+      "more": "Ďalšie filtre",
+      "apply": "Použiť",
+      "activeLabel": "Aktívne filtre:",
+      "clearAll": "Zrušiť všetko",
+      "remove": "Odstrániť filter"
     },
     "uncategorized": "Nezaradené"
   },
   "categories": {
     "title": "Kategórie",
-    "subtitle": "Každá kategória patrí do jednej z troch skupín pravidla 50/30/20. Kľúčové slová riadia automatické zaraďovanie pri importe.",
+    "subtitle": "Kam išli vaše peniaze v období {month}, kategóriu po kategórii.",
     "allTitle": "Všetky kategórie",
     "allDescription": "Kategórie príjmov a prevodov sú z rozdelenia 50/30/20 vylúčené.",
     "countOne": "{count} kategória",
@@ -106,6 +141,72 @@
       "income": "Príjem",
       "transfer": "Prevod",
       "expense": "Výdavok"
+    },
+    "empty": "V tomto mesiaci nie sú zaznamenané žiadne výdavky.",
+    "emptyHint": "Naimportujte transakcie a uvidíte štatistiky podľa kategórií.",
+    "allMonths": "Všetky mesiace",
+    "insights": {
+      "title": "Prehľad",
+      "total": "Celkové výdavky",
+      "totalFooter": "V {count} kategóriách",
+      "top": "Najväčšia kategória",
+      "topFooter": "{share} zo všetkého, čo ste minuli",
+      "climbing": "Najrýchlejší rast",
+      "climbingFooter": "O {amount} viac ako minulý mesiac",
+      "falling": "Najrýchlejší pokles",
+      "fallingFooter": "O {amount} menej ako minulý mesiac",
+      "concentration": "Tri najväčšie kategórie",
+      "concentrationFooter": "Podiel vašich troch najväčších kategórií",
+      "noComparison": "Pred týmto mesiacom nie je porovnateľný mesiac",
+      "noneYet": "Zatiaľ nie je čo porovnávať"
+    },
+    "breakdown": {
+      "title": "Výdavky podľa kategórií",
+      "description": "V porovnaní s predchádzajúcim mesiacom. Príjmy a prevody sú vylúčené.",
+      "columns": {
+        "category": "Kategória",
+        "bucket": "Skupina",
+        "share": "Podiel",
+        "count": "Transakcie",
+        "average": "Priemer",
+        "change": "Oproti minulému mesiacu",
+        "spent": "Minuté"
+      },
+      "new": "Nová",
+      "countOne": "{count} transakcia",
+      "countMany": "Počet transakcií: {count}",
+      "uncategorized": "Nezaradené"
+    },
+    "manage": {
+      "title": "Správa kategórií",
+      "description": "Pridajte si vlastné kategórie a nastavte kľúčové slová, podľa ktorých sa transakcie pri importe zaradia automaticky.",
+      "add": "Pridať kategóriu",
+      "addTitle": "Nová kategória",
+      "editTitle": "Upraviť kategóriu",
+      "edit": "Upraviť",
+      "delete": "Odstrániť",
+      "deleting": "Odstraňuje sa…",
+      "deleteTitle": "Odstrániť túto kategóriu?",
+      "deleteConfirm": "Kategória „{name}“ bude odstránená. Túto akciu nemožno vrátiť späť.",
+      "deleteWithTransactions": "Kategóriu „{name}“ používa {count} transakcií. Tie sa neodstránia, ale ostanú nezaradené.",
+      "cancel": "Zrušiť",
+      "save": "Uložiť",
+      "saving": "Ukladá sa…",
+      "created": "Kategória bola pridaná.",
+      "updated": "Kategória bola upravená.",
+      "deleted": "Kategória bola odstránená.",
+      "noKeywords": "Zatiaľ žiadne kľúčové slová",
+      "fields": {
+        "name": "Názov",
+        "bucket": "Skupina",
+        "keywords": "Kľúčové slová",
+        "keywordsPlaceholder": "lidl, kaufland, tesco",
+        "keywordsHint": "Oddeľte čiarkami. Pri importe sa transakcia, ktorej text obsahuje niektoré z nich, zaradí sem automaticky."
+      },
+      "errors": {
+        "duplicate": "Kategória s týmto názvom už existuje.",
+        "generic": "Nepodarilo sa. Skúste to znova."
+      }
     }
   },
   "import": {

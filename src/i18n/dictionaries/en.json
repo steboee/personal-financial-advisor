@@ -30,6 +30,28 @@
     "wants": "Wants",
     "savings": "Savings"
   },
+  "categoryNames": {
+    "Groceries": "Groceries",
+    "Housing": "Housing",
+    "Utilities": "Utilities",
+    "Telecom": "Telecom",
+    "Transport": "Transport",
+    "Health": "Health",
+    "Insurance": "Insurance",
+    "Taxes & fees": "Taxes & fees",
+    "Debt payments": "Debt payments",
+    "Dining out": "Dining out",
+    "Shopping": "Shopping",
+    "Entertainment": "Entertainment",
+    "Sport": "Sport",
+    "Travel": "Travel",
+    "Investments": "Investments",
+    "Savings": "Savings",
+    "Pension": "Pension",
+    "Income": "Income",
+    "Transfers": "Transfers",
+    "Uncategorized": "Uncategorized"
+  },
   "dashboard": {
     "title": "Dashboard",
     "emptyTitle": "Nothing here yet",
@@ -85,13 +107,26 @@
       "allMonths": "All months",
       "allBuckets": "All buckets",
       "allCategories": "All categories",
-      "clear": "Clear"
+      "clear": "Clear",
+      "filtersLabel": "Filters",
+      "allFlows": "All money",
+      "flowIn": "Money in",
+      "flowOut": "Money out",
+      "amount": "Amount",
+      "minAmount": "Min",
+      "maxAmount": "Max",
+      "uncategorizedOnly": "Uncategorized only",
+      "more": "More filters",
+      "apply": "Apply",
+      "activeLabel": "Active filters:",
+      "clearAll": "Clear all",
+      "remove": "Remove filter"
     },
     "uncategorized": "Uncategorized"
   },
   "categories": {
     "title": "Categories",
-    "subtitle": "Each category belongs to one of the three 50/30/20 buckets. Keywords drive automatic categorization on import.",
+    "subtitle": "Where your money went in {month}, category by category.",
     "allTitle": "All categories",
     "allDescription": "Income and transfer categories are excluded from the 50/30/20 split.",
     "countOne": "{count} category",
@@ -106,6 +141,72 @@
       "income": "Income",
       "transfer": "Transfer",
       "expense": "Expense"
+    },
+    "empty": "No spending recorded in this month.",
+    "emptyHint": "Import transactions to see category statistics.",
+    "allMonths": "All months",
+    "insights": {
+      "title": "Insights",
+      "total": "Total spending",
+      "totalFooter": "Across {count} categories",
+      "top": "Largest category",
+      "topFooter": "{share} of everything you spent",
+      "climbing": "Rising fastest",
+      "climbingFooter": "{amount} more than last month",
+      "falling": "Falling fastest",
+      "fallingFooter": "{amount} less than last month",
+      "concentration": "Top three categories",
+      "concentrationFooter": "Share held by your three biggest categories",
+      "noComparison": "No comparable month before this one",
+      "noneYet": "Nothing to compare yet"
+    },
+    "breakdown": {
+      "title": "Spending by category",
+      "description": "Compared with the previous month. Income and transfers are excluded.",
+      "columns": {
+        "category": "Category",
+        "bucket": "Bucket",
+        "share": "Share",
+        "count": "Transactions",
+        "average": "Average",
+        "change": "vs last month",
+        "spent": "Spent"
+      },
+      "new": "New",
+      "countOne": "{count} transaction",
+      "countMany": "{count} transactions",
+      "uncategorized": "Uncategorized"
+    },
+    "manage": {
+      "title": "Manage categories",
+      "description": "Add your own categories and tune the keywords that sort transactions automatically on import.",
+      "add": "Add category",
+      "addTitle": "New category",
+      "editTitle": "Edit category",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleting": "Deleting…",
+      "deleteTitle": "Delete this category?",
+      "deleteConfirm": "“{name}” will be removed. This cannot be undone.",
+      "deleteWithTransactions": "“{name}” is used by {count} transactions. They will not be deleted, but they will become uncategorized.",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…",
+      "created": "Category added.",
+      "updated": "Category updated.",
+      "deleted": "Category deleted.",
+      "noKeywords": "No keywords yet",
+      "fields": {
+        "name": "Name",
+        "bucket": "Bucket",
+        "keywords": "Keywords",
+        "keywordsPlaceholder": "lidl, kaufland, tesco",
+        "keywordsHint": "Separate with commas. On import, a transaction whose text contains one of these is filed here automatically."
+      },
+      "errors": {
+        "duplicate": "A category with that name already exists.",
+        "generic": "That did not work. Please try again."
+      }
     }
   },
   "import": {
