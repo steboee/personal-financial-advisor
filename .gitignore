@@ -50,3 +50,6 @@ docs/*.json
 .agents/
 !docs/fixtures/
 !docs/fixtures/*.json
+
+# supabase CLI scratch
+supabase/.temp/

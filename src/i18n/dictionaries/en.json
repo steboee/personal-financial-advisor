@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "transactions": "Transactions",
+    "categories": "Categories",
+    "import": "Import",
+    "logout": "Log out",
+    "appName": "Financial Advisor",
+    "language": "Language",
+    "settings": "Settings"
+  },
+  "login": {
+    "title": "Login to your account",
+    "subtitle": "Sign in with Google to continue. Access is limited to approved accounts.",
+    "button": "Login with Google",
+    "redirecting": "Redirecting…",
+    "privacy": "Your bank data stays in your own Supabase project.",
+    "heroEyebrow": "The 50/30/20 rule",
+    "heroTitle": "Every euro accounted for.",
+    "heroBody": "Import a Slovenská sporiteľňa export and see where your money goes.",
+    "errors": {
+      "not_allowed": "That account is not on the allowlist. Ask the owner for access.",
+      "oauth_failed": "Google sign-in did not complete. Please try again.",
+      "missing_code": "The sign-in link was incomplete. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "buckets": {
+    "needs": "Needs",
+    "wants": "Wants",
+    "savings": "Savings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "emptyTitle": "Nothing here yet",
+    "emptyBody": "Import a Slovenská sporiteľňa export to see your income, spending and 50/30/20 progress.",
+    "emptyAction": "Import transactions",
+    "cards": {
+      "income": "Total income",
+      "incomeFooter": "Money in, excluding transfers",
+      "incomeHint": "Transfers between your own accounts are not counted.",
+      "expenses": "Total expenses",
+      "expensesFooter": "Money out this month",
+      "expensesHint": "Share of income spent",
+      "net": "Net savings",
+      "netFooterPositive": "You kept money this month",
+      "netFooterNegative": "You spent more than you earned",
+      "netHint": "Target is 20% or more",
+      "uncategorized": "Uncategorized",
+      "uncategorizedFooterSome": "Missing from the 50/30/20 split",
+      "uncategorizedFooterNone": "Everything is categorized",
+      "uncategorizedHintSome": "Assign categories on the Transactions page.",
+      "uncategorizedHintNone": "Nothing needs attention.",
+      "noIncome": "No income recorded yet"
+    },
+    "rule": {
+      "title": "The 50/30/20 rule",
+      "description": "Share of {income} income this month.",
+      "noIncome": "No income recorded this month, so no targets can be set.",
+      "over": "{amount} over the {target} target",
+      "left": "{amount} left of {target}",
+      "importPrompt": "Import income to see progress."
+    },
+    "recent": {
+      "title": "Recent transactions",
+      "description": "The latest activity this month.",
+      "viewAll": "View all transactions"
+    }
+  },
+  "transactions": {
+    "title": "Transactions",
+    "countOne": "{count} transaction.",
+    "countMany": "{count} transactions.",
+    "hint": "Change a category inline to correct it.",
+    "empty": "No transactions match these filters.",
+    "columns": {
+      "date": "Date",
+      "description": "Description",
+      "category": "Category",
+      "bucket": "Bucket",
+      "amount": "Amount"
+    },
+    "filters": {
+      "search": "Search description…",
+      "allMonths": "All months",
+      "allBuckets": "All buckets",
+      "allCategories": "All categories",
+      "clear": "Clear"
+    },
+    "uncategorized": "Uncategorized"
+  },
+  "categories": {
+    "title": "Categories",
+    "subtitle": "Each category belongs to one of the three 50/30/20 buckets. Keywords drive automatic categorization on import.",
+    "allTitle": "All categories",
+    "allDescription": "Income and transfer categories are excluded from the 50/30/20 split.",
+    "countOne": "{count} category",
+    "countMany": "{count} categories",
+    "columns": {
+      "name": "Name",
+      "bucket": "Bucket",
+      "type": "Type",
+      "keywords": "Keywords"
+    },
+    "types": {
+      "income": "Income",
+      "transfer": "Transfer",
+      "expense": "Expense"
+    }
+  },
+  "import": {
+    "title": "Import transactions",
+    "subtitle": "Upload a bank export. Transactions are categorized automatically, and anything already imported is skipped.",
+    "drop": "Drop your export here, or choose a file",
+    "formats": "Slovenská sporiteľňa (George) export · .json or .csv · up to 10 MB",
+    "choose": "Choose file",
+    "submit": "Import",
+    "importing": "Importing…",
+    "helpTitle": "Getting your export",
+    "step1": "Open George (Slovenská sporiteľňa) and go to your account.",
+    "step2": "Open the transaction history and choose the period you want.",
+    "step3": "Export it as JSON (preferred) or CSV, then upload the file here.",
+    "helpNote": "Overlapping periods are safe to re-import: each transaction is fingerprinted, so duplicates are skipped rather than added twice.",
+    "errors": {
+      "noFile": "Please choose a file first.",
+      "tooLarge": "That file is larger than 10 MB.",
+      "wrongType": "Please choose a .json or .csv export.",
+      "unreadable": "No transactions could be read from that file."
+    },
+    "result": {
+      "importedNone": "No new transactions to import.",
+      "importedOne": "Imported 1 new transaction.",
+      "importedMany": "Imported {count} new transactions.",
+      "skippedOne": "Skipped 1 duplicate that was already in the system.",
+      "skippedMany": "Skipped {count} duplicates that were already in the system.",
+      "repeatedOne": "1 row was repeated inside the file.",
+      "repeatedMany": "{count} rows were repeated inside the file.",
+      "failedOne": "1 row could not be read.",
+      "failedMany": "{count} rows could not be read."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Your account and app preferences.",
+    "profile": {
+      "title": "Profile",
+      "description": "Signed in with Google. These details come from your Google account.",
+      "name": "Name",
+      "email": "Email",
+      "signedInSince": "Account created",
+      "lastSignIn": "Last sign-in",
+      "notSet": "Not set"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "description": "Applies to this browser.",
+      "language": "Language"
+    },
+    "data": {
+      "title": "Your data",
+      "description": "Everything stays in your own Supabase project.",
+      "transactions": "Transactions",
+      "categories": "Categories",
+      "months": "Months with data",
+      "oldest": "Oldest transaction",
+      "newest": "Newest transaction",
+      "none": "None yet"
+    },
+    "account": {
+      "title": "Account",
+      "description": "Sign out of this device.",
+      "logout": "Log out"
+    }
+  }
+}

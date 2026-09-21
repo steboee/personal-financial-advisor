@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "dashboard": "Prehľad",
+    "transactions": "Transakcie",
+    "categories": "Kategórie",
+    "import": "Import",
+    "logout": "Odhlásiť sa",
+    "appName": "Finančný poradca",
+    "language": "Jazyk",
+    "settings": "Nastavenia"
+  },
+  "login": {
+    "title": "Prihláste sa do svojho účtu",
+    "subtitle": "Pokračujte prihlásením cez Google. Prístup majú iba schválené účty.",
+    "button": "Prihlásiť sa cez Google",
+    "redirecting": "Presmerovanie…",
+    "privacy": "Vaše bankové údaje zostávajú vo vašom vlastnom Supabase projekte.",
+    "heroEyebrow": "Pravidlo 50/30/20",
+    "heroTitle": "Každé euro má svoje miesto.",
+    "heroBody": "Importujte výpis zo Slovenskej sporiteľne a zistite, kam idú vaše peniaze.",
+    "errors": {
+      "not_allowed": "Tento účet nie je na zozname povolených. Požiadajte vlastníka o prístup.",
+      "oauth_failed": "Prihlásenie cez Google sa nedokončilo. Skúste to znova.",
+      "missing_code": "Prihlasovací odkaz bol neúplný. Skúste to znova.",
+      "generic": "Niečo sa pokazilo. Skúste to znova."
+    }
+  },
+  "buckets": {
+    "needs": "Potreby",
+    "wants": "Priania",
+    "savings": "Úspory"
+  },
+  "dashboard": {
+    "title": "Prehľad",
+    "emptyTitle": "Zatiaľ tu nič nie je",
+    "emptyBody": "Importujte výpis zo Slovenskej sporiteľne a uvidíte svoje príjmy, výdavky a plnenie pravidla 50/30/20.",
+    "emptyAction": "Importovať transakcie",
+    "cards": {
+      "income": "Celkový príjem",
+      "incomeFooter": "Prijaté peniaze, bez prevodov",
+      "incomeHint": "Prevody medzi vlastnými účtami sa nezapočítavajú.",
+      "expenses": "Celkové výdavky",
+      "expensesFooter": "Minuté peniaze tento mesiac",
+      "expensesHint": "Podiel minutého príjmu",
+      "net": "Čisté úspory",
+      "netFooterPositive": "Tento mesiac ste ušetrili",
+      "netFooterNegative": "Minuli ste viac, než ste zarobili",
+      "netHint": "Cieľ je 20 % a viac",
+      "uncategorized": "Nezaradené",
+      "uncategorizedFooterSome": "Chýba v rozdelení 50/30/20",
+      "uncategorizedFooterNone": "Všetko je zaradené",
+      "uncategorizedHintSome": "Priraďte kategórie na stránke Transakcie.",
+      "uncategorizedHintNone": "Nič nevyžaduje pozornosť.",
+      "noIncome": "Zatiaľ žiadny príjem"
+    },
+    "rule": {
+      "title": "Pravidlo 50/30/20",
+      "description": "Podiel z príjmu {income} za tento mesiac.",
+      "noIncome": "Tento mesiac nie je zaznamenaný žiadny príjem, takže sa nedajú určiť ciele.",
+      "over": "{amount} nad cieľom {target}",
+      "left": "Zostáva {amount} z {target}",
+      "importPrompt": "Importujte príjem a uvidíte priebeh."
+    },
+    "recent": {
+      "title": "Posledné transakcie",
+      "description": "Najnovšie pohyby tento mesiac.",
+      "viewAll": "Zobraziť všetky transakcie"
+    }
+  },
+  "transactions": {
+    "title": "Transakcie",
+    "countOne": "{count} transakcia.",
+    "countMany": "Počet transakcií: {count}.",
+    "hint": "Kategóriu môžete opraviť priamo v tabuľke.",
+    "empty": "Žiadne transakcie nezodpovedajú týmto filtrom.",
+    "columns": {
+      "date": "Dátum",
+      "description": "Popis",
+      "category": "Kategória",
+      "bucket": "Skupina",
+      "amount": "Suma"
+    },
+    "filters": {
+      "search": "Hľadať v popise…",
+      "allMonths": "Všetky mesiace",
+      "allBuckets": "Všetky skupiny",
+      "allCategories": "Všetky kategórie",
+      "clear": "Zrušiť"
+    },
+    "uncategorized": "Nezaradené"
+  },
+  "categories": {
+    "title": "Kategórie",
+    "subtitle": "Každá kategória patrí do jednej z troch skupín pravidla 50/30/20. Kľúčové slová riadia automatické zaraďovanie pri importe.",
+    "allTitle": "Všetky kategórie",
+    "allDescription": "Kategórie príjmov a prevodov sú z rozdelenia 50/30/20 vylúčené.",
+    "countOne": "{count} kategória",
+    "countMany": "Počet kategórií: {count}",
+    "columns": {
+      "name": "Názov",
+      "bucket": "Skupina",
+      "type": "Typ",
+      "keywords": "Kľúčové slová"
+    },
+    "types": {
+      "income": "Príjem",
+      "transfer": "Prevod",
+      "expense": "Výdavok"
+    }
+  },
+  "import": {
+    "title": "Import transakcií",
+    "subtitle": "Nahrajte bankový výpis. Transakcie sa zaradia automaticky a už importované sa preskočia.",
+    "drop": "Presuňte sem výpis alebo vyberte súbor",
+    "formats": "Výpis zo Slovenskej sporiteľne (George) · .json alebo .csv · do 10 MB",
+    "choose": "Vybrať súbor",
+    "submit": "Importovať",
+    "importing": "Importujem…",
+    "helpTitle": "Ako získať výpis",
+    "step1": "Otvorte George (Slovenská sporiteľňa) a prejdite na svoj účet.",
+    "step2": "Otvorte históriu transakcií a vyberte požadované obdobie.",
+    "step3": "Exportujte ju ako JSON (odporúčané) alebo CSV a súbor nahrajte sem.",
+    "helpNote": "Prekrývajúce sa obdobia môžete importovať znova bez obáv: každá transakcia má odtlačok, takže duplikáty sa preskočia namiesto zdvojenia.",
+    "errors": {
+      "noFile": "Najprv vyberte súbor.",
+      "tooLarge": "Súbor je väčší ako 10 MB.",
+      "wrongType": "Vyberte súbor .json alebo .csv.",
+      "unreadable": "Zo súboru sa nepodarilo načítať žiadne transakcie."
+    },
+    "result": {
+      "importedNone": "Žiadne nové transakcie na import.",
+      "importedOne": "Importovaná 1 nová transakcia.",
+      "importedMany": "Importovaných nových transakcií: {count}.",
+      "skippedOne": "Preskočený 1 duplikát, ktorý už bol v systéme.",
+      "skippedMany": "Preskočených duplikátov, ktoré už boli v systéme: {count}.",
+      "repeatedOne": "1 riadok sa v súbore opakoval.",
+      "repeatedMany": "Počet riadkov opakujúcich sa v súbore: {count}.",
+      "failedOne": "1 riadok sa nepodarilo načítať.",
+      "failedMany": "Počet riadkov, ktoré sa nepodarilo načítať: {count}."
+    }
+  },
+  "settings": {
+    "title": "Nastavenia",
+    "subtitle": "Váš účet a predvoľby aplikácie.",
+    "profile": {
+      "title": "Profil",
+      "description": "Prihlásený cez Google. Tieto údaje pochádzajú z vášho účtu Google.",
+      "name": "Meno",
+      "email": "E-mail",
+      "signedInSince": "Účet vytvorený",
+      "lastSignIn": "Posledné prihlásenie",
+      "notSet": "Nenastavené"
+    },
+    "preferences": {
+      "title": "Predvoľby",
+      "description": "Platí pre tento prehliadač.",
+      "language": "Jazyk"
+    },
+    "data": {
+      "title": "Vaše údaje",
+      "description": "Všetko zostáva vo vašom vlastnom Supabase projekte.",
+      "transactions": "Transakcie",
+      "categories": "Kategórie",
+      "months": "Mesiace s údajmi",
+      "oldest": "Najstaršia transakcia",
+      "newest": "Najnovšia transakcia",
+      "none": "Zatiaľ žiadne"
+    },
+    "account": {
+      "title": "Účet",
+      "description": "Odhlásiť sa z tohto zariadenia.",
+      "logout": "Odhlásiť sa"
+    }
+  }
+}
