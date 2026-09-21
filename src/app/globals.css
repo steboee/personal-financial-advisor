@@ -128,3 +128,21 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+@layer base {
+  /* Standalone (home-screen) mode draws under the notch and home indicator
+   * because of `viewportFit: 'cover'`. Only inset in that mode, so the
+   * in-browser layout is unchanged. */
+  @media (display-mode: standalone) {
+    body {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  /* Stop the rubber-band overscroll that makes an installed app feel like a
+   * web page. */
+  html {
+    overscroll-behavior-y: none;
+  }
+}

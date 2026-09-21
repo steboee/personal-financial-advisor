@@ -48,7 +48,10 @@ export const config = {
     /*
      * Everything except static assets and metadata files. Auth routes stay
      * matched on purpose so the session cookie is refreshed there too.
+     *
+     * manifest.webmanifest must stay public: the browser fetches it without
+     * credentials, so redirecting it to /login breaks home-screen install.
      */
-    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
+    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
   ],
 }
