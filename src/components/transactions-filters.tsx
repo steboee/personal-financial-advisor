@@ -39,6 +39,24 @@ export function TransactionsFilters({
   const category = params.get('category') ?? ALL
   const hasFilters = [month, bucket, category].some((v) => v !== ALL) || search.length > 0
 
+  // Base UI's <SelectValue> shows the raw value unless the Root is given the
+  // value-to-label mapping, which would print UUIDs and enum keys in triggers.
+  const monthLabels = [
+    { value: ALL, label: f.allMonths },
+    ...months.map((m) => ({
+      value: m,
+      label: formatMonth(new Date(`${m}-01T00:00:00`)),
+    })),
+  ]
+  const bucketLabels = [
+    { value: ALL, label: f.allBuckets },
+    ...BUCKET_ORDER.map((b) => ({ value: b, label: dict.buckets[b] })),
+  ]
+  const categoryLabels = [
+    { value: ALL, label: f.allCategories },
+    ...categories.map((c) => ({ value: c.id, label: c.name })),
+  ]
+
   function setParam(key: string, value: string | null) {
     const next = new URLSearchParams(params)
     if (!value || value === ALL) next.delete(key)
@@ -68,7 +86,11 @@ export function TransactionsFilters({
         />
       </div>
 
-      <Select value={month} onValueChange={(v) => setParam('month', v)}>
+      <Select
+        value={month}
+        onValueChange={(v) => setParam('month', v)}
+        items={monthLabels}
+      >
         <SelectTrigger className="w-40" aria-label={f.allMonths}>
           <SelectValue placeholder={f.allMonths} />
         </SelectTrigger>
@@ -82,7 +104,11 @@ export function TransactionsFilters({
         </SelectContent>
       </Select>
 
-      <Select value={bucket} onValueChange={(v) => setParam('bucket', v)}>
+      <Select
+        value={bucket}
+        onValueChange={(v) => setParam('bucket', v)}
+        items={bucketLabels}
+      >
         <SelectTrigger className="w-36" aria-label={f.allBuckets}>
           <SelectValue placeholder={f.allBuckets} />
         </SelectTrigger>
@@ -96,7 +122,11 @@ export function TransactionsFilters({
         </SelectContent>
       </Select>
 
-      <Select value={category} onValueChange={(v) => setParam('category', v)}>
+      <Select
+        value={category}
+        onValueChange={(v) => setParam('category', v)}
+        items={categoryLabels}
+      >
         <SelectTrigger className="w-44" aria-label={f.allCategories}>
           <SelectValue placeholder={f.allCategories} />
         </SelectTrigger>

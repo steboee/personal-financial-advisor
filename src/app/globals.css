@@ -122,9 +122,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
+    /* font-sans belongs on body, not html: next/font defines
+     * --font-geist-sans via a class on <body>, and a parent cannot read a
+     * variable set on its child. */
+    @apply bg-background text-foreground font-sans;
   }
 }

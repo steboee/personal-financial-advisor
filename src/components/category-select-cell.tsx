@@ -6,7 +6,9 @@ import { toast } from 'sonner'
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
@@ -37,6 +39,13 @@ export function CategorySelectCell({
     items: categories.filter((c) => c.bucket === bucket),
   })).filter((g) => g.items.length > 0)
 
+  // Base UI's <SelectValue> renders the raw value unless the Root is told how
+  // each value maps to a label, which would show the category UUID.
+  const itemLabels = [
+    { value: NONE, label: labels.uncategorized },
+    ...categories.map((c) => ({ value: c.id, label: c.name })),
+  ]
+
   function change(value: string | null) {
     const next = !value || value === NONE ? null : value
     startTransition(async () => {
@@ -47,23 +56,26 @@ export function CategorySelectCell({
   }
 
   return (
-    <Select value={optimisticId ?? NONE} onValueChange={change} disabled={pending}>
+    <Select
+      value={optimisticId ?? NONE}
+      onValueChange={change}
+      disabled={pending}
+      items={itemLabels}
+    >
       <SelectTrigger size="sm" className="w-full min-w-36" aria-label={labels.uncategorized}>
         <SelectValue placeholder={labels.uncategorized} />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value={NONE}>{labels.uncategorized}</SelectItem>
         {grouped.map(({ bucket, items }) => (
-          <div key={bucket}>
-            <div className="px-2 py-1.5 text-xs text-muted-foreground">
-              {labels[bucket]}
-            </div>
+          <SelectGroup key={bucket}>
+            <SelectLabel>{labels[bucket]}</SelectLabel>
             {items.map((c) => (
               <SelectItem key={c.id} value={c.id}>
                 {c.name}
               </SelectItem>
             ))}
-          </div>
+          </SelectGroup>
         ))}
       </SelectContent>
     </Select>

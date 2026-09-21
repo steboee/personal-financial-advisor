@@ -27,7 +27,12 @@ export function LanguageSwitcher({ locale, label }: { locale: Locale; label: str
   }
 
   return (
-    <Select value={locale} onValueChange={change} disabled={pending}>
+    <Select
+      value={locale}
+      onValueChange={change}
+      disabled={pending}
+      items={LOCALES.map((l) => ({ value: l, label: LOCALE_LABELS[l] }))}
+    >
       <SelectTrigger size="sm" className="w-full" aria-label={label}>
         <LanguagesIcon className="size-4 text-muted-foreground" />
         <SelectValue />
