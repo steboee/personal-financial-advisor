@@ -122,7 +122,8 @@
       "clearAll": "Clear all",
       "remove": "Remove filter"
     },
-    "uncategorized": "Uncategorized"
+    "uncategorized": "Uncategorized",
+    "emptyHint": "Try removing a filter to widen the search."
   },
   "categories": {
     "title": "Categories",

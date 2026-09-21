@@ -31,6 +31,10 @@ export default async function TransactionsPage({
     bucket?: string
     category?: string
     search?: string
+    flow?: string
+    min?: string
+    max?: string
+    uncategorized?: string
     sort?: string
     direction?: string
   }>
@@ -39,12 +43,25 @@ export default async function TransactionsPage({
   const sort = sp.sort === 'amount' ? 'amount' : 'date'
   const direction = sp.direction === 'asc' ? 'asc' : 'desc'
 
+  /** Ignores blanks and anything non-numeric rather than filtering on NaN. */
+  function amountParam(value: string | undefined) {
+    if (!value) return undefined
+    const n = Number(value)
+    return Number.isFinite(n) ? Math.abs(n) : undefined
+  }
+
+  const flow = sp.flow === 'in' || sp.flow === 'out' ? sp.flow : undefined
+
   const [transactions, categories, months, dict] = await Promise.all([
     getTransactions({
       month: sp.month,
       bucket: sp.bucket as BucketType | undefined,
       categoryId: sp.category,
       search: sp.search,
+      flow,
+      minAmount: amountParam(sp.min),
+      maxAmount: amountParam(sp.max),
+      uncategorized: sp.uncategorized === '1',
       sort,
       direction,
     }),
@@ -111,8 +128,11 @@ export default async function TransactionsPage({
             <TableBody>
               {transactions.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="h-24 text-center text-muted-foreground">
-                    {dict.transactions.empty}
+                  <TableCell colSpan={5} className="h-28 text-center">
+                    <p className="font-medium">{dict.transactions.empty}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {dict.transactions.emptyHint}
+                    </p>
                   </TableCell>
                 </TableRow>
               ) : (

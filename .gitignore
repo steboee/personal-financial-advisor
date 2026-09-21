@@ -53,3 +53,4 @@ docs/*.json
 
 # supabase CLI scratch
 supabase/.temp/
+.claude

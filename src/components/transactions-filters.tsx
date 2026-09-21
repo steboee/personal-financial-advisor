@@ -101,12 +101,12 @@ export function TransactionsFilters({
 
   // Draft state for the amount inputs, so typing does not navigate on every
   // keystroke. Committed on Apply or Enter.
+  //
+  // `key` below remounts these inputs whenever the URL bounds change (a chip
+  // cleared, Clear all pressed), which resets the drafts without an effect
+  // that syncs state — see the React "you might not need an effect" guidance.
   const [draftMin, setDraftMin] = useState(min)
   const [draftMax, setDraftMax] = useState(max)
-  useEffect(() => {
-    setDraftMin(min)
-    setDraftMax(max)
-  }, [min, max])
 
   // Debounce the search so each keystroke is not a navigation.
   useEffect(() => {
@@ -275,7 +275,7 @@ export function TransactionsFilters({
               </Select>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2" key={`${min}|${max}`}>
               <Label htmlFor="filter-min">{f.amount}</Label>
               <div className="flex items-center gap-2">
                 <Input

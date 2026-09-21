@@ -122,7 +122,8 @@
       "clearAll": "Zrušiť všetko",
       "remove": "Odstrániť filter"
     },
-    "uncategorized": "Nezaradené"
+    "uncategorized": "Nezaradené",
+    "emptyHint": "Skúste odstrániť niektorý filter a rozšíriť hľadanie."
   },
   "categories": {
     "title": "Kategórie",
