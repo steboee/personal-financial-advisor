@@ -26,6 +26,15 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         } as React.CSSProperties
       }
     >
+      {/* First stop in the tab order, so keyboard users can jump the whole
+          sidebar. Visible only while focused. */}
+      <a
+        href="#content"
+        className="bg-background ring-ring sr-only z-50 rounded-md px-4 py-2 text-sm font-medium focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:ring-2"
+      >
+        {dict.nav.skipToContent}
+      </a>
+
       <AppSidebar
         variant="inset"
         user={navUser}
@@ -49,9 +58,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             settings: dict.nav.settings,
           }}
         />
-        <div className="flex flex-1 flex-col">
+        <main id="content" className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">{children}</div>
-        </div>
+        </main>
       </SidebarInset>
     </SidebarProvider>
   )

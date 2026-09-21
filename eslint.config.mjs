@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Agent tooling, not project source: gitignored, ships its own CommonJS
+    // scripts, and linting it buries real findings under hundreds of
+    // no-require-imports errors we would never act on.
+    ".claude/**",
+    ".agents/**",
   ]),
 ]);
 

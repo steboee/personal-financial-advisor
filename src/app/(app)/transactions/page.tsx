@@ -174,7 +174,7 @@ export default async function TransactionsPage({
                       )}
                     </TableCell>
                     <TableCell
-                      className={`text-right font-medium tabular-nums ${amountColor(tx.amount)}`}
+                      className={`text-right font-mono font-medium tabular-nums ${amountColor(tx.amount)}`}
                     >
                       {formatSigned(tx.amount)}
                     </TableCell>

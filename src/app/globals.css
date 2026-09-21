@@ -47,10 +47,13 @@
   --color-negative-muted: var(--negative-muted);
   --color-needs: var(--needs);
   --color-needs-muted: var(--needs-muted);
+  --color-needs-foreground: var(--needs-foreground);
   --color-wants: var(--wants);
   --color-wants-muted: var(--wants-muted);
+  --color-wants-foreground: var(--wants-foreground);
   --color-savings: var(--savings);
   --color-savings-muted: var(--savings-muted);
+  --color-savings-foreground: var(--savings-foreground);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -91,10 +94,13 @@
   /* One hue per 50/30/20 bucket, reused everywhere a bucket appears. */
   --needs: oklch(0.6 0.13 245);
   --needs-muted: oklch(0.95 0.03 245);
+  --needs-foreground: oklch(0.52 0.13 245);
   --wants: oklch(0.65 0.15 305);
   --wants-muted: oklch(0.96 0.03 305);
+  --wants-foreground: oklch(0.55 0.15 305);
   --savings: oklch(0.6 0.12 175);
   --savings-muted: oklch(0.95 0.03 175);
+  --savings-foreground: oklch(0.5 0.12 175);
 
   --chart-1: oklch(0.6 0.13 245);
   --chart-2: oklch(0.65 0.15 305);
@@ -140,10 +146,13 @@
 
   --needs: oklch(0.7 0.13 245);
   --needs-muted: oklch(0.28 0.05 245);
+  --needs-foreground: oklch(0.7 0.13 245);
   --wants: oklch(0.74 0.14 305);
   --wants-muted: oklch(0.29 0.05 305);
+  --wants-foreground: oklch(0.74 0.14 305);
   --savings: oklch(0.72 0.12 175);
   --savings-muted: oklch(0.28 0.04 175);
+  --savings-foreground: oklch(0.72 0.12 175);
 
   --chart-1: oklch(0.7 0.13 245);
   --chart-2: oklch(0.74 0.14 305);

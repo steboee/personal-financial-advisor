@@ -32,8 +32,12 @@ export function formatSigned(amount: number): string {
   return `${sign}${currencyFull.format(Math.abs(amount))}`
 }
 
+/**
+ * A percentage. Negative values use the same typographic minus (U+2212) as
+ * `formatSigned`, so a figure and its rate never show two different signs.
+ */
 export function formatPercent(value: number, fractionDigits = 0): string {
-  return `${value.toFixed(fractionDigits)}%`
+  return `${value.toFixed(fractionDigits).replace('-', '\u2212')}%`
 }
 
 const dateShort = new Intl.DateTimeFormat(LOCALE, { day: 'numeric', month: 'short' })

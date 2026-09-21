@@ -7,7 +7,8 @@
     "logout": "Odhlásiť sa",
     "appName": "Finančný poradca",
     "language": "Jazyk",
-    "settings": "Nastavenia"
+    "settings": "Nastavenia",
+    "skipToContent": "Preskočiť na obsah"
   },
   "login": {
     "title": "Prihláste sa do svojho účtu",

@@ -56,7 +56,7 @@ export default async function DashboardPage({
             <CardDescription>{dict.dashboard.emptyBody}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Button render={<Link href="/import" />}>
+            <Button nativeButton={false} render={<Link href="/import" />}>
               <UploadIcon />
               {dict.dashboard.emptyAction}
             </Button>
@@ -68,11 +68,21 @@ export default async function DashboardPage({
 
   return (
     <div className="flex flex-1 flex-col gap-4 py-4 md:gap-6 md:py-6">
+      {/* Every other page carries its own h1; the dashboard had only the
+          breadcrumb, leaving the page with no heading for a screen reader to
+          land on. */}
+      <div className="px-4 lg:px-6">
+        <h1 className="text-2xl font-semibold tracking-tight">{dict.dashboard.title}</h1>
+      </div>
+
       <SectionCards summary={summary} dict={dict} />
 
-      <div className="grid gap-4 px-4 lg:px-6 @5xl/main:grid-cols-2">
+      <div className="flex flex-col gap-4 px-4 lg:px-6">
         <BucketRuleCard buckets={summary.buckets} income={summary.income} dict={dict} />
 
+        {/* The table spans the full measure rather than sharing a split with
+            the rule card: a half-width table truncates descriptions for no
+            gain, and the two are read in sequence, not compared. */}
         <Card>
           <CardHeader>
             <CardTitle>{dict.dashboard.recent.title}</CardTitle>
@@ -93,9 +103,9 @@ export default async function DashboardPage({
                     <TableCell className="text-muted-foreground whitespace-nowrap">
                       {formatDateShort(t.booked_at)}
                     </TableCell>
-                    <TableCell className="max-w-[16rem] truncate">{t.description}</TableCell>
+                    <TableCell className="max-w-0 truncate">{t.description}</TableCell>
                     <TableCell
-                      className={`text-right font-medium tabular-nums ${amountColor(t.amount)}`}
+                      className={`text-right font-mono font-medium tabular-nums ${amountColor(t.amount)}`}
                     >
                       {formatSigned(t.amount)}
                     </TableCell>
@@ -103,7 +113,12 @@ export default async function DashboardPage({
                 ))}
               </TableBody>
             </Table>
-            <Button variant="outline" className="mt-4 w-full" render={<Link href="/transactions" />}>
+            <Button
+              variant="outline"
+              className="mt-4 w-full"
+              nativeButton={false}
+              render={<Link href="/transactions" />}
+            >
               {dict.dashboard.recent.viewAll}
             </Button>
           </CardContent>

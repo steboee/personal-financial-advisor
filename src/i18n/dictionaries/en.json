@@ -7,7 +7,8 @@
     "logout": "Log out",
     "appName": "Financial Advisor",
     "language": "Language",
-    "settings": "Settings"
+    "settings": "Settings",
+    "skipToContent": "Skip to content"
   },
   "login": {
     "title": "Login to your account",
